@@ -23,8 +23,8 @@ for (var i=0; i<numLayers; i++) {
     );
 }
 
-layers[0].open('A_uranium_foyer.mp4');
-layers[1].open('A_garden_recording.mp4');
+layers[0].open('/home/pi/video_swapper/A_uranium_foyer.mp4');
+layers[1].open('/home/pi/video_swapper/A_garden_recording.mp4');
 
 function toggleVideo(){
 	layers[1].getPlayStatus().then( status => {
