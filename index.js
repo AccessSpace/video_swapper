@@ -4,9 +4,17 @@ var Gpio = require('pigpio').Gpio,
   button = new Gpio(4, {
     mode: Gpio.INPUT,
     pullUpDown: Gpio.PUD_DOWN,
-    edge: Gpio.EITHER_EDGE
+    edge: Gpio.RISING_EDGE
+  }),
+  button2 = new Gpio(17, {
+    mode: Gpio.INPUT,
+    pullUpDown: Gpio.PUD_DOWN,
+    edge: Gpio.RISING_EDGE
   });
   
+button.glitchFilter(50000);
+button2.glitchFilter(50000);
+
 let layers = [];
 const numLayers = 2;
 
@@ -44,6 +52,11 @@ function toggleVideo(){
 };
 
 button.on('interrupt', function (value) {
+	console.log("button", value);
+		toggleVideo(); 
+});
+
+button2.on('interrupt', function (value) {
 	console.log("button", value);
 		toggleVideo(); 
 });
