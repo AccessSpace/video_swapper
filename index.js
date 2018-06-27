@@ -12,8 +12,13 @@ var Gpio = require('pigpio').Gpio,
     edge: Gpio.RISING_EDGE
   });
   
-button.glitchFilter(50000);
-button2.glitchFilter(50000);
+button.glitchFilter(100000);
+button2.glitchFilter(100000);
+
+if(button.digitalRead() ==1 && button2.digitalRead() ==1 ){
+	process.exit();
+
+}
 
 let layers = [];
 const numLayers = 2;
@@ -31,10 +36,9 @@ for (var i=0; i<numLayers; i++) {
     );
 }
 
-//layers[0].open('/home/pi/video_swapper/Alternative Architecture 02 imovie export.mov');
 layers[0].open('/home/pi/video_swapper/Alternative Architecture 02_2 version.mp4');
 
-layers[1].open('/home/pi/video_swapper/White Noise.mov');
+layers[1].open('/home/pi/video_swapper/white_noise.mp4.mp4');
 
 function toggleVideo(){
 	layers[1].getPlayStatus().then( status => {
