@@ -6,7 +6,7 @@ var Gpio = require('pigpio').Gpio,
     pullUpDown: Gpio.PUD_DOWN,
     edge: Gpio.RISING_EDGE
   }),
-  button2 = new Gpio(17, {
+  button2 = new Gpio(22, {
     mode: Gpio.INPUT,
     pullUpDown: Gpio.PUD_DOWN,
     edge: Gpio.RISING_EDGE
@@ -31,8 +31,10 @@ for (var i=0; i<numLayers; i++) {
     );
 }
 
-layers[0].open('/home/pi/video_swapper/A_uranium_foyer.mp4');
-layers[1].open('/home/pi/video_swapper/A_garden_recording.mp4');
+//layers[0].open('/home/pi/video_swapper/Alternative Architecture 02 imovie export.mov');
+layers[0].open('/home/pi/video_swapper/Alternative Architecture 02_2 version.mp4');
+
+layers[1].open('/home/pi/video_swapper/White Noise.mov');
 
 function toggleVideo(){
 	layers[1].getPlayStatus().then( status => {
@@ -64,5 +66,5 @@ button2.on('interrupt', function (value) {
 process.on('SIGINT', function () {
 	layers[0].stop();
 	layers[1].stop();
-	button.unexport();
+	//button.unexport();
 });
